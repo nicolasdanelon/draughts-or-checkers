@@ -7,6 +7,24 @@ export const directions = {
   topLeft: [-1, -1],
 };
 
+function addPieces(color, board, from, to) {
+  for (let i = from; i <= to; ++i) {
+    for (let j = 0; j < board[i].length; ++j) {
+      if (board[i][j].color === 'black' ) {
+        board[i][j].taken = true;
+        board[i][j].checkerColor = color;
+      }
+    }
+  }
+}
+
+function addBlackPieces(board) {
+  addPieces('black', board, 7, 9);
+}
+function addWhitePieces(board) {
+  addPieces('white', board, 0, 2);
+}
+
 const useCheckerStore = create((set, get) => ({
   cleanHighlighted: () => {
     const board = get().gameBoard;
@@ -24,16 +42,24 @@ const useCheckerStore = create((set, get) => ({
       const result = [];
 
       for (let i = 0; i < 10; ++i) {
-        const innerArray = new Array();
+        const innerArray = [];
 
         for (let j = 0; j < 10; j++) {
           const color = (i + j) % 2 === 0 ? 'black' : 'white';
-          const data = { color, taken: false, highlight: false };
+          const data = {
+            checkerColor: null,
+            highlight: false,
+            taken: false,
+            color,
+          };
           innerArray.push(data);
         }
 
         result.push(innerArray);
       }
+
+      addBlackPieces(result);
+      addWhitePieces(result);
 
       set({ gameBoard: result });
     }

@@ -1,13 +1,14 @@
 import useCheckerStore from "../store";
+import Checker from "./checker.jsx";
 
 const Square = ({ data, action }) => {
-  const { color, highlight } = data;
+  const { color, highlight, checkerColor, taken } = data;
   const marked = highlight ? 'possible' : '';
   const { cleanHighlighted } = useCheckerStore();
 
   const markAndCleanSquare = () => {
     cleanHighlighted();
-    if (color === 'black') {
+    if (color === 'black' && taken) {
       return action();
     }
   }
@@ -17,7 +18,7 @@ const Square = ({ data, action }) => {
       onClick={markAndCleanSquare}
       class={`square ${color}-square ${marked}`}
     >
-      {"\u00A0"}
+      {taken ? <Checker color={checkerColor} /> : null}
     </div>
   );
 }
