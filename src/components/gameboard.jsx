@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import Square from './square';
 import useCheckerStore, { directions } from '../store';
 
@@ -7,9 +6,6 @@ const GameBoard = () => {
 
   return (
     <>
-      <div>
-        <Link to="/">Home</Link>
-      </div>
       <div class="wrapper-board">
         {gameBoard.map((row, i) => {
           return row.map((col, j) => {
