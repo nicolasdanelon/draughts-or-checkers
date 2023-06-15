@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
     "preact": "^10.13.2",
+    "tailwindcss": "^3.3.2",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
