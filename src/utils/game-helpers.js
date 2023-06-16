@@ -58,19 +58,19 @@ export function moveChecker(board, fromX, fromY, toX, toY) {
   const checker = board[fromX][fromY];
   const isHighlighted = board[toX][toY].highlight;
 
+  let offsetX = (fromX - toX > 0) ? -1 : 1;
+  let offsetY = (fromY - toY > 0) ? -1 : 1;
+
+  for (let i = fromX+offsetX, j = fromY+offsetY; i !== toX && j !== toY; i+=offsetX, j+=offsetY) {
+    if (board[i][j].checkerColor !== checker.checkerColor) {
+      board[i][j] = {...board[i][j], checkerColor: null, taken: false}
+    }
+  }
+
   if (isHighlighted) {
     checker.taken = false;
     board[toX][toY].taken = true;
     board[toX][toY].checkerColor = checker.checkerColor;
     checker.checkerColor = null;
-  }
-
-  let offsetX = (fromX - toX > 0) ? 1 : -1;
-  let offsetY = (fromY - toY > 0) ? 1 : -1;
-
-  for (let i = fromX+offsetX, j = fromY+offsetY; i !== toX-offsetX && j !== toY-offsetY; i+=offsetX, j+=offsetY) {
-    if (board[i][j].checkerColor !== checker.checkerColor) {
-      board[i][j] = {...board[i][j], checkerColor: null, taken: false}
-    }
   }
 }

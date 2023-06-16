@@ -1,7 +1,22 @@
 import { create } from 'zustand';
-import { fillBoard, moveChecker, setHighlightOff } from '../utils/game-helpers.js';
+import { directions, fillBoard, moveChecker, setHighlightOff } from '../utils/game-helpers.js';
 
 const useCheckerStore = create((set, get) => ({
+  moveOrHighlight: (x, y, color, taken, highlight) => {
+    if (x !== get().selectedSquare[0] && y !== get().selectedSquare[1] && highlight === true) {
+      get().moveChecker(get().selectedSquare[0], get().selectedSquare[1], x, y);
+      get().setSelectedSquare(null, null);
+      get().cleanHighlighted();
+    } else if (color === 'black' && taken) {
+      get().cleanHighlighted();
+      get().setSelectedSquare(x, y);
+      Object.values(directions).forEach((direction) => {
+        get().checkCell(x, y, direction, color);
+      })
+      return;
+    }
+    get().cleanHighlighted();
+  },
   moveChecker: (fromX, fromY, toX, toY) => {
     const board = get().gameBoard;
     moveChecker(board, fromX, fromY, toX, toY);
