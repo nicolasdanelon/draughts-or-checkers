@@ -17,7 +17,7 @@ export default async (req, res) => {
         },
       },
       include: {
-        board: true,
+        Board: true,
       },
     });
 

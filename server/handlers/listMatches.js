@@ -13,6 +13,9 @@ export default async (req, res) => {
           },
         },
       },
+      orderBy: {
+        created_at: 'desc',
+      },
     });
 
     const flattenedMatches = matches.map((match) => ({
