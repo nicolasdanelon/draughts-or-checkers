@@ -48,10 +48,8 @@ const useCheckerStore = create((set, get) => ({
     let nextCol = col + direction[1];
 
     if (
-      row < 0 || row > board.length ||            // oob
-      col < 0 || col > board[row].length    // oob
-      // board[row][col].color === playerColor ||          // my colour
-      // board[nextRow][nextCol] !== ''     // can't eat
+      row < 0 || row > board.length ||
+      col < 0 || col > board[row].length
     ) {
       return;
     }
