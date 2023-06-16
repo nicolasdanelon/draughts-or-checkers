@@ -11,7 +11,7 @@ const CreateMatch = ({ setModal }) => {
   useEffect(() => {
     ; (async () => {
       try {
-        const { data } = await axios.post("/v1/match");
+        const { data } = await axios.post("/match");
         setPlayersID(data);
         setIsLoading(false);
       } catch (e) {

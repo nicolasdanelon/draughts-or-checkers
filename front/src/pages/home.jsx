@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     ; (async () => {
       try {
-        const { data } = await axios.get("/v1/match");
+        const { data } = await axios.get("/match");
         setMatches(data);
       } catch (e) {
         console.log(e);

@@ -10,7 +10,7 @@ export function useAxios() {
 const baseURL = import.meta.env.VITE_SERVER_URL;
 
 const axiosConfig = {
-  baseURL,
+  baseURL: `${baseURL}/v1/`,
   headers: {
     'Content-Type': 'application/json',
   },

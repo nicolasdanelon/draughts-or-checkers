@@ -1,6 +1,6 @@
 const ShowMatchLink = ({ color, id }) => {
   const frontUrl = import.meta.env.VITE_FRONT_URL;
-  const link = `${frontUrl}/game/${id}`;
+  const link = `${frontUrl}/match/${id}`;
 
   return (
     <span class="cursor-pointer" onClick={() => {

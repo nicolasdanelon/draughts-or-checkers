@@ -8,7 +8,7 @@ export const directions = {
 function addPieces(color, board, from, to) {
   for (let i = from; i <= to; ++i) {
     for (let j = 0; j < board[i].length; ++j) {
-      if (board[i][j].color === 'black' ) {
+      if (board[i][j].color === 'black') {
         board[i][j].taken = true;
         board[i][j].checkerColor = color;
       }
@@ -61,9 +61,9 @@ export function moveChecker(board, fromX, fromY, toX, toY) {
   let offsetX = (fromX - toX > 0) ? -1 : 1;
   let offsetY = (fromY - toY > 0) ? -1 : 1;
 
-  for (let i = fromX+offsetX, j = fromY+offsetY; i !== toX && j !== toY; i+=offsetX, j+=offsetY) {
+  for (let i = fromX + offsetX, j = fromY + offsetY; i !== toX && j !== toY; i += offsetX, j += offsetY) {
     if (board[i][j].checkerColor !== checker.checkerColor) {
-      board[i][j] = {...board[i][j], checkerColor: null, taken: false}
+      board[i][j] = { ...board[i][j], checkerColor: null, taken: false }
     }
   }
 
