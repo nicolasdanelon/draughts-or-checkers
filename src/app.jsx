@@ -1,9 +1,9 @@
 import { useEffect } from 'preact/compat';
 import { Routes, Route } from 'react-router-dom'
-import Home from './components/home';
-import GameBoard from './components/gameboard';
+import Home from './pages/home.jsx';
+import Game from './pages/game.jsx';
 import Layout from "./components/layout.jsx";
-import useCheckerStore from './store';
+import useCheckerStore from './stores/store.js';
 
 export function App() {
   const { initializeGameBoard } = useCheckerStore();
@@ -16,7 +16,7 @@ export function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/game" element={<GameBoard />} />
+        <Route path="/game" element={<Game />} />
       </Route>
     </Routes>
   );

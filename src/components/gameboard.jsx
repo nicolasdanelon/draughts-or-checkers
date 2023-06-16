@@ -1,32 +1,25 @@
-import Square from './square';
-import useCheckerStore, { directions } from '../store';
+import Square from "./square.jsx";
+import useCheckerStore from "../stores/store.js";
 
 const GameBoard = () => {
-  const { gameBoard, checkCell } = useCheckerStore();
+  const { gameBoard } = useCheckerStore();
 
   return (
-    <>
-      <div class="wrapper-board">
-        {gameBoard.map((row, i) => {
-          return row.map((col, j) => {
-            const color = gameBoard[i][j].color;
-
-            return (
-              <Square
-                key={`square-${i}_${j}`}
-                data={gameBoard[i][j]}
-                action={() => {
-                  Object.values(directions).forEach((direction) => {
-                    checkCell(i, j, direction, color);
-                  })
-                }}
-              />
-            );
-          })
-        })}
-      </div>
-    </>
-  )
+    <div className="game-board">
+      {gameBoard.map((row, i) => {
+        return row.map((col, j) => {
+          return (
+            <Square
+              key={`square-${i}_${j}`}
+              data={gameBoard[i][j]}
+              x={i}
+              y={j}
+            />
+          );
+        })
+      })}
+    </div>
+  );
 }
 
 export default GameBoard;
