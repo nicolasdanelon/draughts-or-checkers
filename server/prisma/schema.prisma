@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+model Match {
+  id         Int      @id @default(autoincrement())
+  white_id   String
+  black_id   String
+  created_at DateTime @default(now())
+  Board      Board?
+}
+
+model Board {
+  id       Int    @id @default(autoincrement())
+  content  String
+  turn     String
+  match    Match? @relation(fields: [match_id], references: [id])
+  match_id Int?   @unique
+}
