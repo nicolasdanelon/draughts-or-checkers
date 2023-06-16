@@ -6,6 +6,9 @@
   "scripts": {
     "dev-server": "cd server && pnpm run dev",
     "dev-front": "cd front && pnpm run dev",
+    "install-deps-server": "cd server && pnpm install && npx prisma generate",
+    "install-deps-front": "cd front && pnpm install",
+    "install-all-dependencies": "concurrently \"pnpm run install-deps-server\" \"pnpm run install-deps-front\"",
     "dev": "concurrently \"pnpm run dev-front\" \"pnpm run dev-server\""
   },
   "keywords": [],
